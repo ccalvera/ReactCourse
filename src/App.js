@@ -1,25 +1,32 @@
+import React from "react";
 import "./App.css";
-import { TodoCounter } from "./TodoCounter";
-import { TodoSearch } from "./TodoSearch";
-import { TodoList } from "./TodoList";
-import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
+import { TodoCounter } from "./TodoCounter";
+import { TodoItem } from "./TodoItem";
+import { TodoList } from "./TodoList";
+import { TodoSearch } from "./TodoSearch";
+
+const defaultTodos = [
+  { text: "cortar cebolla", completed: "false" },
+  { text: "lalalal", completed: "true" },
+];
 
 function App() {
   return (
-    <div className="App">
-      <TodoCounter />
+    //Tambien se puede usar el React.Fragment con solo las flechas vacias <>
+    <React.Fragment>
+      <TodoCounter completed={16} total={20} />
 
       <TodoSearch />
 
       <TodoList>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {defaultTodos.map((todo) => (
+          <TodoItem key={todo.text} text={todo.text} />
+        ))}
       </TodoList>
 
       <CreateTodoButton />
-    </div>
+    </React.Fragment>
   );
 }
 
